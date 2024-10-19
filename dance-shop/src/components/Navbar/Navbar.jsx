@@ -1,4 +1,4 @@
-// src/components/navbar/Navbar.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; 
@@ -14,14 +14,20 @@ function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">Home</Link>
+                            <Link className="nav-link" to="/">Domov</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/products">Products</Link>
+                            <Link className="nav-link" to="/products">Produkty</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/contact">Contact</Link>
+                            <Link className="nav-link" to="/contact">Kontakt</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login">Prihlásenie</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/register">Registrácia</Link>
+                        </li>                        
                     </ul>
                 </div>
             </div>
