@@ -12,3 +12,19 @@ p {
     font-size: 1.2em;
     color: #555;
 }
+
+.homepage-img {
+    width: 90%; 
+    /*max-width: 600px; */
+    height: auto; 
+}
+
+.nakup-teraz-buttom {
+    background-color: #f8f9fa ;
+    color: #333 ; 
+    border: 2px solid darkgrey;
+}
+
+
+
+ 

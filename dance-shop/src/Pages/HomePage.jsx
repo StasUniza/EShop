@@ -1,7 +1,9 @@
 import React from 'react';
-import './HomePage.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import backround from '../components/Images/Dance_pozadie.png'
+import './HomePage.css';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
     return (
@@ -10,11 +12,15 @@ function HomePage() {
             <div className="jumbotron text-center bg-light p-4">
                 <h1>Vitajte v našom tanečnom e-shope!</h1>
                 <p>Najlepšie tanečné topánky, šaty a doplnky na jednom mieste.</p>
-                <button href="/products" className="btn btn-primary">Nakupovať teraz</button>
+
+                <Link to="/products">
+                    <button className="btn btn-primary nakup-teraz-buttom">Nakupovať teraz</button>
+                </Link>
+                
             </div>
 
             <div className="text-center my-5">
-                <img src={backround} alt="Tanečný obrázok" className="img-fluid" />
+                <img src={backround} alt="Tanečný obrázok" className="img-fluid homepage-img" />
             </div>
 
             
@@ -43,3 +49,5 @@ function HomePage() {
 }
 
 export default HomePage;
+
+
