@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 
 function HomePage() {
     return (
+        <div className="homepage-container">
         <div className="container mt-5">
             
-            <div className="jumbotron text-center bg-light p-4">
+            <div className="jumbotron jumbotron-custom text-center  p-4 ">
                 <h1>Vitajte v našom tanečnom e-shope!</h1>
                 <p>Najlepšie tanečné topánky, šaty a doplnky na jednom mieste.</p>
 
@@ -24,7 +25,7 @@ function HomePage() {
             </div>
 
             
-            <div className="benefits mt-5 text-center">
+            <div className="benefits mt-5 text-center ">
                 <h2>Prečo nakupovať u nás?</h2>
                 <div className="row">
                     <div className="col-md-4">
@@ -44,6 +45,7 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

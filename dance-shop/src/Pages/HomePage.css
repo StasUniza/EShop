@@ -1,7 +1,15 @@
+
 .homepage-container {
     padding: 20px;
     text-align: center;
     background-color: #f0f0f0;
+}
+
+.jumbotron-custom {
+    background-color: wheat; /* Svetlá béžová farba pozadia */
+   /* padding: 2rem;*/
+    border-radius: 8px;
+   /* margin-top: 2rem;*/
 }
 
 h1 {
@@ -17,6 +25,7 @@ p {
     width: 90%; 
     /*max-width: 600px; */
     height: auto; 
+    border-radius: 8px;
 }
 
 .nakup-teraz-buttom {
@@ -24,6 +33,27 @@ p {
     color: #333 ; 
     border: 2px solid darkgrey;
 }
+
+.nakup-teraz-buttom:hover{
+    background-color:#815e5b ;
+    border-color: #815e5b;
+}
+
+
+.homepage-container {
+    background-color: white; /* Svetlomodrá farba */
+    /*background-image: url('../components/Images/your-background-image.jpg'); /* Nahraď cestou k obrázku, ak chceš použiť obrázok */
+   /* background-size: cover; /* Prispôsobí obrázok veľkosti stránky */
+   /* background-repeat: no-repeat; /* Zabraňuje opakovaniu obrázka */
+    min-height: 100vh; /* Pozadie bude pokrývať celú výšku okna */
+}
+
+
+.benefits {
+    background-color: wheat;
+    border-radius: 8px;
+}
+
 
 
 
