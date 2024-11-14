@@ -1,5 +1,5 @@
 .navbar {
-    background-color: wheat; /* Svetlobéžová farba pozadia pre navbar */
+    background-color: wheat;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -7,11 +7,11 @@
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #4a4a4a; /* Tmavosivá farba pre názov značky */
+    color: #4a4a4a; 
 }
 
 .nav-link {
-    color: #4a4a4a; /* Tmavosivá farba pre odkazy */
+    color: #4a4a4a; 
     padding: 8px 16px;
     border-radius: 4px;
     font-weight: bold;
@@ -19,6 +19,6 @@
 }
 
 .nav-link:hover {
-    background-color: #d3b999; /* Svetlohnedá farba pri prechode myšou */
-    color: #ffffff; /* Biela farba textu pri prechode myšou */
+    background-color: #d3b999; 
+    color: #ffffff; 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import backround from '../components/Images/Dance_pozadie.png'
+import backround from '../../Assets/Images/Dance_pozadie.png'
 import './HomePage.css';
 import { Link } from 'react-router-dom';
 

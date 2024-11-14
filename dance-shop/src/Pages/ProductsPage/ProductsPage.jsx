@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import danceShoeBrush from '../components/Images/dance_shoe_brush.png';
-import danceShoes from '../components/Images/dance_shoes.png';
-import danceDress from '../components/Images/dance_dress.png';
+import danceShoeBrush from '../../Assets/Images/dance_shoe_brush.png';
+import danceShoes from '../../Assets/Images/dance_shoes.png';
+import danceDress from '../../Assets/Images/dance_dress.png';
 
 const products = [
     {
