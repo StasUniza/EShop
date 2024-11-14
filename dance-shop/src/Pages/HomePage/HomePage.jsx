@@ -1,28 +1,34 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import backround from '../../Assets/Images/Dance_pozadie.png'
+import desktopImage from '../../Assets/Images/Dance_pozadie_pc.png'
+import mobileImage from '../../Assets/Images/Dance_pozadie.png'
 import './HomePage.css';
 import { Link } from 'react-router-dom';
 
 function HomePage() {
     return (
         <div className="homepage-container">
+
+
+        
+                {/* Obrázok pre desktop - zobrazí sa len na väčších obrazovkách */}
+                <div className="d-none d-md-block">
+                    <img src={desktopImage} alt="Tanečný obrázok pre desktop" className="img-fluid homepage-img" />
+                </div>
+
+                {/* Obrázok pre mobilné zariadenia - zobrazí sa len na menších obrazovkách */}
+                <div className="d-block d-md-none">
+                    <img src={mobileImage} alt="Tanečný obrázok pre mobil" className="img-fluid homepage-img" />
+                </div>
+
+
+
         <div className="container mt-5">
             
-            <div className="jumbotron jumbotron-custom text-center  p-4 ">
-                <h1>Vitajte v našom tanečnom e-shope!</h1>
-                <p>Najlepšie tanečné topánky, šaty a doplnky na jednom mieste.</p>
+            
 
-                <Link to="/products">
-                    <button className="btn btn-primary nakup-teraz-buttom">Nakupovať teraz</button>
-                </Link>
-                
-            </div>
-
-            <div className="text-center my-5">
-                <img src={backround} alt="Tanečný obrázok" className="img-fluid homepage-img" />
-            </div>
+           
 
             
             <div className="benefits mt-5 text-center ">
