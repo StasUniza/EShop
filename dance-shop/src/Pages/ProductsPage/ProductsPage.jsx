@@ -90,12 +90,12 @@ function ProductsPage() {
       {/* Zoznam produktov */}
       <div className="row">
         {products.map((product) => (
-          <div className="col-md-4 col-sm-6 col-xs-12 mb-4" key={product.id}>
+          <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 mb-4" key={product.id}>
             <div className="card product-card h-100">
               <Link to={`/products/${product.id}`} className="text-decoration-none">
                 <img
-                  src={product.image.default}
-                  className="card-img-top"
+                  src={product.image}
+                  className="product-image"
                   alt={product.name}
                 />
                 <div className="card-body">
