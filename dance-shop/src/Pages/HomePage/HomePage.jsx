@@ -1,61 +1,104 @@
-import React from 'react';
+// src/Pages/HomePage/HomePage.jsx
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import desktopImage from '../../Assets/Images/Dance_pozadie_pc.png'
-import mobileImage from '../../Assets/Images/Dance_pozadie.png'
-import './HomePage.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import './HomePage.css';
+import heroImage from '../../Assets/Images/Dance_pozadie_pc.png';
+import imagePc from '../../Assets/Images/Dance_pozadie_pc.png';
+import imageMobile from '../../Assets/Images/Dance_pozadie.png';
+import categoryShoes from '../../Assets/Images/dance_shoes.png';
+import categoryClothing from '../../Assets/Images/dance_dress.png';
+import categoryAccessories from '../../Assets/Images/dance_shoe_brush.png';
+
 function HomePage() {
-    return (
-        <div className="homepage-container">
-
-
-        
-                {/* Obrázok pre desktop - zobrazí sa len na väčších obrazovkách */}
-                <div className="d-none d-md-block">
-                    <img src={desktopImage} alt="Tanečný obrázok pre desktop" className="img-fluid homepage-img" />
+  return (
+    <div className="homepage">
+      {/* Hero sekcia */}
+      <div className="jumbotron text-center">
+        {/* Obrázok pre desktop - zobrazí sa len na väčších obrazovkách */}
+      <div className="d-none d-md-block">
+                    <img src={imagePc} alt="Tanečný obrázok pre desktop" className="img-fluid homepage-img" />
                 </div>
 
                 {/* Obrázok pre mobilné zariadenia - zobrazí sa len na menších obrazovkách */}
                 <div className="d-block d-md-none">
-                    <img src={mobileImage} alt="Tanečný obrázok pre mobil" className="img-fluid homepage-img" />
+                    <img src={imageMobile} alt="Tanečný obrázok pre mobil" className="img-fluid homepage-img" />
                 </div>
+       {/*<img src={heroImage} alt="Dance Shop" className="img-fluid hero-image" />*/}
+        
+      </div>
 
-
-
-        <div className="container mt-5">
-            
-            
-
-           
-
-            
-            <div className="benefits mt-5 text-center ">
-                <h2>Prečo nakupovať u nás?</h2>
-                <div className="row">
-                    <div className="col-md-4">
-                        <i className="bi bi-truck"></i>
-                        <h4>Rýchle doručenie</h4>
-                        <p>Doručenie do 2 pracovných dní priamo k vám domov.</p>
-                    </div>
-                    <div className="col-md-4">
-                        <i className="bi bi-shield-check"></i>
-                        <h4>Záruka spokojnosti</h4>
-                        <p>Vrátanie tovaru do 30 dní bez otázok.</p>
-                    </div>
-                    <div className="col-md-4">
-                        <i className="bi bi-star"></i>
-                        <h4>Najlepšia kvalita</h4>
-                        <p>Naše produkty sú testované a zaručené najlepšej kvality.</p>
-                    </div>
+      {/* Kategórie produktov */}
+      <div className="container categories text-center my-5">
+        <h2>Kategórie</h2>
+        <div className="row">
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+            <Link to="/products?category=shoes" className="text-decoration-none">
+              <div className="card category-card">
+                <img src={categoryShoes} className="card-img-top" alt="Topánky" />
+                <div className="card-body">
+                  <h5 className="card-title">Topánky</h5>
                 </div>
+              </div>
+            </Link>
+          </div>
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+            <Link to="/products?category=clothing" className="text-decoration-none">
+              <div className="card category-card">
+                <img src={categoryClothing} className="card-img-top" alt="Oblečenie" />
+                <div className="card-body">
+                  <h5 className="card-title">Oblečenie</h5>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+            <Link to="/products?category=accessories" className="text-decoration-none">
+              <div className="card category-card">
+                <img src={categoryAccessories} className="card-img-top" alt="Doplnky" />
+                <div className="card-body">
+                  <h5 className="card-title">Doplnky</h5>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Populárne produkty */}
+      <div className="container popular-products text-center my-5">
+        <h2>Populárne produkty</h2>
+        <div className="row">
+          {/* Neskôr sem pridáte dynamicky načítané produkty */}
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+            <div className="card product-card">
+              <p>Produkt 1</p>
             </div>
+          </div>
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+            <div className="card product-card">
+              <p>Produkt 2</p>
+            </div>
+          </div>
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
+            <div className="card product-card">
+              <p>Produkt 3</p>
+            </div>
+          </div>
         </div>
-        </div>
-    );
+      </div>
+
+      {/* O nás */}
+      <div className="container-fluid about-us text-white text-center py-5">
+        <h2>O nás</h2>
+        <p className="mx-auto w-75">
+          Dance Shop je váš spoľahlivý partner pre všetko, čo potrebujete na tanečný parket. Ponúkame široký výber produktov pre začiatočníkov aj profesionálov.
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default HomePage;
-
-

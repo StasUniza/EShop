@@ -1,46 +1,66 @@
+/* src/Pages/HomePage/HomePage.css */
 
-.homepage-container {
-    padding: 0px;
-    text-align: center;
-    background-color: #1A2A42;
-}
-
-
-.benefits {
-    margin-top: 40px;
+/* Globálne štýly */
+body {
+    background-color: #1A2B48;
     color: #FFFFFF;
-    
-}
-
-.benefits h2 {
-    color: #FFD700;
-    margin-bottom: 30px;
-    
-}
-
-
-
-.benefits h4 {
-    color: #FFD700;
-}
-
-.benefits i {
-    font-size: 2em;
-    color: #FFD700;
-    margin-bottom: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    font-family: 'Lato', sans-serif;
+  }
+  
+  /* Hero sekcia */
+  .jumbotron {
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+  }
+  
+  
  
+  /* Kategórie produktov */
+  .categories h2 {
+    color: #FFFFFF;
+    margin-bottom: 40px;
+  }
+  
+  .category-card {
+    background-color: #F2F2F2;
+    border: none;
+  }
+  
+  .category-card .card-title {
+    color: #1A2B48;
+  }
+  
+  /* Populárne produkty */
+  .popular-products h2 {
+    color: #FFFFFF;
+    margin-bottom: 40px;
+  }
+  
+  .product-card {
+    background-color: #F2F2F2;
+    border: none;
+  }
+  
+  /* O nás */
+  .about-us {
+    background-color: #1A2B48;
+  }
+  
+  .about-us h2 {
+    margin-bottom: 20px;
+  }
+  
+  .about-us p {
+    font-size: 18px;
+  }
+  
+  /* Responzívne úpravy sú už riešené pomocou Bootstrapu */
+  

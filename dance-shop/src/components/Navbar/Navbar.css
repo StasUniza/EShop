@@ -1,24 +1,65 @@
-.navbar {
-    background-color: wheat;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
+/* src/components/Navbar/Navbar.css */
 
-.navbar-brand {
+/* Vlastné pozadie pre Navbar */
+.navbar.bg-custom {
+    background-color: #1A2B48;
+  }
+  
+  /* Logo */
+  .logo-img {
+    height: 40px;
+  }
+  
+  .navbar-brand span {
+    color: #D4AF37; /* Zlatá farba */
+    font-weight: bold;
     font-size: 1.5rem;
+  }
+  
+  /* Navigačné odkazy */
+  .nav-link {
+    color: #FFFFFF;
     font-weight: bold;
-    color: #4a4a4a; 
-}
-
-.nav-link {
-    color: #4a4a4a; 
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: #d3b999; 
-    color: #ffffff; 
-}
+    margin-left: 10px;
+  }
+  
+  .nav-link:hover {
+    color: #D4AF37;
+  }
+  
+  /* Vyhľadávacie pole */
+  .form-control {
+    background-color: #F2F2F2;
+    border: none;
+    color: #1A2B48;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+  }
+  
+  .btn-search {
+    background-color: #D4AF37;
+    color: #1A2B48;
+    border: none;
+  }
+  
+  .btn-search:hover {
+    background-color: #B29700;
+    color: #FFFFFF;
+  }
+  
+  /* Ikona košíka */
+  .nav-link .bi {
+    font-size: 1.5rem;
+  }
+  
+  .badge.bg-gold {
+    background-color: #D4AF37;
+    color: #1A2B48;
+    font-size: 0.75rem;
+    padding: 4px 6px;
+  }
+  
+  /* Responzívne úpravy pomocou Bootstrap tried */
+  
