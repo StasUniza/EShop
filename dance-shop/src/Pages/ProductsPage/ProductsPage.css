@@ -37,19 +37,13 @@
   color: #1A2B48;
 }
 
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background-color: #D4AF37; /* Voliteľné pozadie */
-}
-
+/* Obrázky produktov */
 .product-card .card-img-top {
-  height: 200px;
-  object-fit: cover;
-
+  width: 100%;
+  height: auto;
 }
 
+/* Tlačidlo Pridať do košíka */
 .product-card .btn-custom {
   background-color: #D4AF37;
   color: #1A2B48;

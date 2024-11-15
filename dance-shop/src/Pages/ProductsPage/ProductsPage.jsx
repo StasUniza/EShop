@@ -1,41 +1,44 @@
 // src/Pages/ProductsPage/ProductsPage.jsx
 
 import React, { useState, useEffect } from 'react';
-
 import { Link } from 'react-router-dom';
 import './ProductsPage.css';
 
-// Mock dáta produktov (neskôr nahradíte reálnymi dátami z API alebo databázy)
+// Import obrázkov
+import danceShoesImage from '../../Assets/Images/dance_shoes.png';
+import danceDressImage from '../../Assets/Images/dance_dress.png';
+import danceShoeBrushImage from '../../Assets/Images/dance_shoe_brush.png';
+
+// Mock dáta produktov
 const productsData = [
   {
     id: 1,
     name: 'Tanečné topánky Classic',
     price: 59.99,
-    image: require('../../Assets/Images/dance_shoes.png'),
+    image: danceShoesImage,
     category: 'topánky',
   },
   {
     id: 2,
     name: 'Tanečné šaty Elegance',
     price: 89.99,
-    image: require('../../Assets/Images/dance_dress.png'),
+    image: danceDressImage,
     category: 'oblečenie',
   },
   {
     id: 3,
     name: 'Kefa na tanečné topánky',
     price: 9.99,
-    image: require('../../Assets/Images/dance_shoe_brush.png'),
+    image: danceShoeBrushImage,
     category: 'doplnky',
   },
-  // ...pridajte ďalšie produkty podľa potreby
+  // ...ďalšie produkty
 ];
 
 function ProductsPage() {
   const [products, setProducts] = useState(productsData);
   const [selectedCategory, setSelectedCategory] = useState('všetky');
 
-  // Filtrovanie produktov podľa kategórie
   useEffect(() => {
     if (selectedCategory === 'všetky') {
       setProducts(productsData);
@@ -53,49 +56,18 @@ function ProductsPage() {
 
       {/* Filtre */}
       <div className="filters text-center mb-4">
-        <button
-          className={`btn mx-2 mb-2 ${
-            selectedCategory === 'všetky' ? 'btn-custom-active' : 'btn-outline-light'
-          }`}
-          onClick={() => setSelectedCategory('všetky')}
-        >
-          Všetky
-        </button>
-        <button
-          className={`btn mx-2 mb-2 ${
-            selectedCategory === 'topánky' ? 'btn-custom-active' : 'btn-outline-light'
-          }`}
-          onClick={() => setSelectedCategory('topánky')}
-        >
-          Topánky
-        </button>
-        <button
-          className={`btn mx-2 mb-2 ${
-            selectedCategory === 'oblečenie' ? 'btn-custom-active' : 'btn-outline-light'
-          }`}
-          onClick={() => setSelectedCategory('oblečenie')}
-        >
-          Oblečenie
-        </button>
-        <button
-          className={`btn mx-2 mb-2 ${
-            selectedCategory === 'doplnky' ? 'btn-custom-active' : 'btn-outline-light'
-          }`}
-          onClick={() => setSelectedCategory('doplnky')}
-        >
-          Doplnky
-        </button>
+        {/* ...tlačidlá filtrov */}
       </div>
 
       {/* Zoznam produktov */}
       <div className="row">
         {products.map((product) => (
-          <div className="col-lg-2 col-md-4 col-sm-6 col-xs-12 mb-4" key={product.id}>
+          <div className="col-lg-2 col-md-4 col-sm-6 col-6 mb-4" key={product.id}>
             <div className="card product-card h-100">
               <Link to={`/products/${product.id}`} className="text-decoration-none">
                 <img
                   src={product.image}
-                  className="product-image"
+                  className="card-img-top"
                   alt={product.name}
                 />
                 <div className="card-body">
