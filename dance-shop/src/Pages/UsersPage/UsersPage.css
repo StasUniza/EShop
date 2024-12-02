@@ -1,0 +1,24 @@
+/* src/Pages/UsersPage/UsersPage.css */
+
+.users-page {
+    padding: 20px;
+    background-color: #1A2B48;
+    color: #ffffff;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.users-table th, .users-table td {
+    border: 1px solid #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+.users-table th {
+    background-color: #D4AF37;
+    color: #1A2B48;
+}

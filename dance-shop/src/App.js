@@ -8,6 +8,7 @@ import RegisterPage from './Pages/RegisterPage';
 import Navbar from './components/Navbar/Navbar'; 
 import './App.css';
 import CartPage from './Pages/CartPage/CartPage';
+import UsersPage from './Pages/UsersPage/UsersPage';
 
 
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/register' element={<RegisterPage/>} />
                     <Route path='/cart' element={<CartPage/>}/>
+                    <Route path="/users" element={<UsersPage />} />
                 </Routes>
             </div>
         </Router>
