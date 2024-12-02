@@ -1,13 +1,13 @@
 /* src/Pages/HomePage/HomePage.css */
 
-/* Globálne štýly */
+
 body {
     background-color: #1A2B48;
     color: #FFFFFF;
     font-family: 'Lato', sans-serif;
   }
   
-  /* Hero sekcia */
+
   .jumbotron {
     position: relative;
     background-color: transparent;
@@ -23,7 +23,7 @@ body {
   
   
  
-  /* Kategórie produktov */
+  
   .categories h2 {
     color: #FFFFFF;
     margin-bottom: 40px;
@@ -38,7 +38,7 @@ body {
     color: #1A2B48;
   }
   
-  /* Populárne produkty */
+
   .popular-products h2 {
     color: #FFFFFF;
     margin-bottom: 40px;
@@ -49,18 +49,21 @@ body {
     border: none;
   }
   
-  /* O nás */
+
   .about-us {
     background-color: #1A2B48;
+    
   }
   
   .about-us h2 {
     margin-bottom: 20px;
+    
   }
   
   .about-us p {
     font-size: 18px;
+    color: #FFFFFF;
   }
   
-  /* Responzívne úpravy sú už riešené pomocou Bootstrapu */
+
   

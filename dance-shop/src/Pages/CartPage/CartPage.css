@@ -1,0 +1,45 @@
+/* src/Pages/CartPage/CartPage.css */
+
+
+.cart-page {
+    background-color: #1A2B48;
+    color: #FFFFFF;
+    min-height: 100vh;
+    padding-top: 20px;
+  }
+  
+
+  .cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+
+  .summary {
+    margin-top: 20px;
+  }
+  
+  .summary h4 {
+    color: #D4AF37;
+  }
+  
+  .btn-success {
+    background-color: #D4AF37;
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background-color: #B29700;
+  }
+  
+  .btn-danger {
+    background-color: #FF5C5C;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #CC0000;
+  }
+  

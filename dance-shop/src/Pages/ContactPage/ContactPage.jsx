@@ -1,8 +1,9 @@
 import React from 'react';
+import './ContactPage.css';
 
 function ContactPage() {
     return (
-        <div className="container">
+        <div className="container hlavnyKontainer">
             <h1>Kontaktujte nás</h1>
             <p>Radi odpovieme na všetky vaše otázky a pomôžeme vám.</p>
             

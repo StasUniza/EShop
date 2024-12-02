@@ -15,25 +15,24 @@ import categoryAccessories from '../../Assets/Images/dance_shoe_brush.png';
 function HomePage() {
   return (
     <div className="homepage">
-      {/* Hero sekcia */}
+   
       <div className="jumbotron text-center">
-        {/* Obrázok pre desktop - zobrazí sa len na väčších obrazovkách */}
+        
       <div className="d-none d-md-block">
                     <img src={imagePc} alt="Tanečný obrázok pre desktop" className="img-fluid homepage-img" />
                 </div>
 
-                {/* Obrázok pre mobilné zariadenia - zobrazí sa len na menších obrazovkách */}
+                
                 <div className="d-block d-md-none">
                     <img src={imageMobile} alt="Tanečný obrázok pre mobil" className="img-fluid homepage-img" />
                 </div>
-       {/*<img src={heroImage} alt="Dance Shop" className="img-fluid hero-image" />*/}
+      
         
       </div>
 
-      {/* Kategórie produktov */}
-      <div className="container categories text-center my-5">
+      <div className="container categories text-center  my-5">
         <h2>Kategórie</h2>
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
             <Link to="/products?category=shoes" className="text-decoration-none">
               <div className="card category-card">
@@ -67,11 +66,11 @@ function HomePage() {
         </div>
       </div>
 
-      {/* Populárne produkty */}
+     
       <div className="container popular-products text-center my-5">
         <h2>Populárne produkty</h2>
-        <div className="row">
-          {/* Neskôr sem pridáte dynamicky načítané produkty */}
+        <div className="row justify-content-center">
+         
           <div className="col-lg-2 col-md-4 col-sm-6 col-6 my-3">
             <div className="card product-card">
               <p>Produkt 1</p>
@@ -90,7 +89,7 @@ function HomePage() {
         </div>
       </div>
 
-      {/* O nás */}
+    
       <div className="container-fluid about-us text-white text-center py-5">
         <h2>O nás</h2>
         <p className="mx-auto w-75">

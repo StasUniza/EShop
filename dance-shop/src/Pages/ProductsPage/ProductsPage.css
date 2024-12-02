@@ -7,7 +7,7 @@
   padding-top: 20px;
 }
 
-/* Filtre */
+
 .filters .btn-custom-active {
   background-color: #D4AF37;
   color: #1A2B48;
@@ -25,7 +25,7 @@
   border-color: #D4AF37;
 }
 
-/* Karty produktov */
+
 .product-card {
   background-color: #F2F2F2;
   color: #1A2B48;
@@ -37,13 +37,13 @@
   color: #1A2B48;
 }
 
-/* Obrázky produktov */
+
 .product-card .card-img-top {
   width: 100%;
   height: auto;
 }
 
-/* Tlačidlo Pridať do košíka */
+
 .product-card .btn-custom {
   background-color: #D4AF37;
   color: #1A2B48;
@@ -60,7 +60,7 @@
   border-top: none;
 }
 
-/* Ostatné štýly */
+
 a {
   color: inherit;
   text-decoration: none;
@@ -70,4 +70,5 @@ a:hover {
   text-decoration: none;
 }
 
-/* Responzívne úpravy sú riešené pomocou Bootstrapu */
+
+

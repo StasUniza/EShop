@@ -2,22 +2,21 @@
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons CSS
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logo from '../../Assets/Images/logo.png'; // Nahraďte cestou k vášmu logu
+import logo from '../../Assets/Images/logo.png'; 
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-custom">
       <div className="container-fluid">
-        {/* Logo */}
+       
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src={logo} alt="Dance Shop Logo" className="logo-img" />
           <span className="ms-2">Dance Shop</span>
         </Link>
 
-        {/* Tlačidlo pre mobilné zobrazenie */}
         <button
           className="navbar-toggler"
           type="button"
@@ -30,9 +29,9 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Obsah Navbaru */}
+     
         <div className="collapse navbar-collapse" id="navbarContent">
-          {/* Vyhľadávacie pole v strede */}
+         
           <form className="d-flex flex-column flex-lg-row mx-auto my-2 my-lg-0">
             <input
               className="form-control w-100 w-lg-auto me-2"
@@ -45,7 +44,7 @@ function Navbar() {
             </button>
           </form>
 
-          {/* Navigačné odkazy a ikona košíka vpravo */}
+       
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
             <li className="nav-item">
               <Link className="nav-link" to="/products">
@@ -68,7 +67,7 @@ function Navbar() {
                 <i className="bi bi-cart" style={{ fontSize: '1.5rem' }}></i>
                 {/* Počet položiek v košíku */}
                 <span className="badge bg-gold position-absolute top-0 start-100 translate-middle">
-                  0
+                  100
                 </span>
               </Link>
             </li>

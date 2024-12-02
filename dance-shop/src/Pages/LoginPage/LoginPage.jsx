@@ -1,8 +1,9 @@
 import React from 'react';
+import '../ContactPage/ContactPage.css';
 
 function LoginPage() {
     return (
-        <div className="container">
+        <div className="container hlavnyKontainer">
             <h1>Prihlásenie</h1>
             <form className="login-form">
                 <div className="mb-3">

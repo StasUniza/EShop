@@ -1,6 +1,6 @@
 /* src/components/Navbar/Navbar.css */
 
-/* Vlastné pozadie pre Navbar */
+
 .navbar {
     border-bottom-color: #D4AF37;
     
@@ -11,19 +11,19 @@
 .navbar.bg-custom {
     background-color: #1A2B48; 
   }
-  
-  /* Logo */
+
+
   .logo-img {
     height: 40px;
   }
   
   .navbar-brand span {
-    color: #D4AF37; /* Zlatá farba */
+    color: #D4AF37; 
     font-weight: bold;
     font-size: 1.5rem;
   }
   
-  /* Navigačné odkazy */
+ 
   .nav-link {
     color: #FFFFFF;
     font-weight: bold;
@@ -34,7 +34,7 @@
     color: #D4AF37;
   }
   
-  /* Vyhľadávacie pole */
+
   .form-control {
     background-color: #F2F2F2;
     border: none;
@@ -56,7 +56,7 @@
     color: #FFFFFF;
   }
   
-  /* Ikona košíka */
+
   .nav-link .bi {
     font-size: 1.5rem;
   }
@@ -68,5 +68,5 @@
     padding: 4px 6px;
   }
   
-  /* Responzívne úpravy pomocou Bootstrap tried */
+ 
   

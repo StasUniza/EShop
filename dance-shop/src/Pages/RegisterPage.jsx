@@ -1,8 +1,9 @@
 import React from 'react';
+import './ContactPage/ContactPage.css';
 
 function RegisterPage() {
     return (
-        <div className="container">
+        <div className="container hlavnyKontainer">
             <h1>Registrácia</h1>
             <form className="register-form">
                 <div className="mb-3">

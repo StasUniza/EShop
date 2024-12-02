@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductsPage.css';
 
-// Import obrázkov
+
 import danceShoesImage from '../../Assets/Images/dance_shoes.png';
 import danceDressImage from '../../Assets/Images/dance_dress.png';
 import danceShoeBrushImage from '../../Assets/Images/dance_shoe_brush.png';
 
-// Mock dáta produktov
+
 const productsData = [
   {
     id: 1,
@@ -32,7 +32,7 @@ const productsData = [
     image: danceShoeBrushImage,
     category: 'doplnky',
   },
-  // ...ďalšie produkty
+  
 ];
 
 function ProductsPage() {
@@ -56,11 +56,43 @@ function ProductsPage() {
 
       {/* Filtre */}
       <div className="filters text-center mb-4">
-        {/* ...tlačidlá filtrov */}
+        <button
+          className={`btn mx-2 mb-2 ${
+            selectedCategory === 'všetky' ? 'btn-custom-active' : 'btn-outline-light'
+          }`}
+          onClick={() => setSelectedCategory('všetky')}
+        >
+          Všetky
+        </button>
+        <button
+          className={`btn mx-2 mb-2 ${
+            selectedCategory === 'topánky' ? 'btn-custom-active' : 'btn-outline-light'
+          }`}
+          onClick={() => setSelectedCategory('topánky')}
+        >
+          Topánky
+        </button>
+        <button
+          className={`btn mx-2 mb-2 ${
+            selectedCategory === 'oblečenie' ? 'btn-custom-active' : 'btn-outline-light'
+          }`}
+          onClick={() => setSelectedCategory('oblečenie')}
+        >
+          Oblečenie
+        </button>
+        <button
+          className={`btn mx-2 mb-2 ${
+            selectedCategory === 'doplnky' ? 'btn-custom-active' : 'btn-outline-light'
+          }`}
+          onClick={() => setSelectedCategory('doplnky')}
+        >
+          Doplnky
+        </button>
       </div>
 
+
       {/* Zoznam produktov */}
-      <div className="row">
+      <div className="row justify-content-center">
         {products.map((product) => (
           <div className="col-lg-2 col-md-4 col-sm-6 col-6 mb-4" key={product.id}>
             <div className="card product-card h-100">
