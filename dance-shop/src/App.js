@@ -8,7 +8,9 @@ import RegisterPage from './Pages/RegisterPage';
 import Navbar from './components/Navbar/Navbar'; 
 import './App.css';
 import CartPage from './Pages/CartPage/CartPage';
-import UsersPage from './Pages/UsersPage/UsersPage';
+import UserManagement from './Pages/UsersPage/UsersPage';
+import AddUserForm from './Pages/UsersPage/AddUserForm'; // Import nového komponentu
+
 
 
 
@@ -27,7 +29,8 @@ function App() {
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/register' element={<RegisterPage/>} />
                     <Route path='/cart' element={<CartPage/>}/>
-                    <Route path="/users" element={<UsersPage />} />
+                    <Route path="/users" element={<UserManagement />} />
+                    <Route path="/add-user" element={<AddUserForm />} />
                 </Routes>
             </div>
         </Router>
