@@ -219,7 +219,7 @@ function UsersPage() {
             )}
 
 {isMobile ? (
-    // Mobilné zobrazenie (karty)
+    
     <div className="row">
         {users.map((user) => (
             <div key={user.user_id} className="col-12 mb-3">

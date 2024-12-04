@@ -54,7 +54,7 @@ function ProductsPage() {
     <div className="products-page container">
       <h1 className="text-center my-5 text-white">Produkty</h1>
 
-      {/* Filtre */}
+     
       <div className="filters text-center mb-4">
         <button
           className={`btn mx-2 mb-2 ${
@@ -91,7 +91,7 @@ function ProductsPage() {
       </div>
 
 
-      {/* Zoznam produktov */}
+      
       <div className="row justify-content-center">
         {products.map((product) => (
           <div className="col-lg-2 col-md-4 col-sm-6 col-6 mb-4" key={product.id}>

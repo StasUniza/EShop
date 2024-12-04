@@ -61,11 +61,11 @@ function Navbar() {
                 Použivatelia
               </Link>
             </li>
-            {/* Ikona košíka */}
+            
             <li className="nav-item">
               <Link className="nav-link position-relative" to="/cart">
                 <i className="bi bi-cart" style={{ fontSize: '1.5rem' }}></i>
-                {/* Počet položiek v košíku */}
+                
                 <span className="badge bg-gold position-absolute top-0 start-100 translate-middle">
                   100
                 </span>

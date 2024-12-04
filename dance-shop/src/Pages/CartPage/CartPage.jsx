@@ -29,12 +29,12 @@ function CartPage() {
     },
   ]);
 
-  // Funkcia na odstránenie položky z košíka
+  
   const handleRemoveItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
-  // Funkcia na aktualizáciu množstva
+  
   const handleQuantityChange = (id, newQuantity) => {
     setCartItems(
       cartItems.map((item) =>
@@ -43,7 +43,7 @@ function CartPage() {
     );
   };
 
-  // Vypočítanie celkovej ceny
+  
   const calculateTotalPrice = () =>
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
 
@@ -55,7 +55,7 @@ function CartPage() {
         <p className="text-center text-white">Váš košík je prázdny.</p>
       ) : (
         <>
-          {/* Zoznam položiek */}
+         
           <table className="table table-dark table-hover">
             <thead>
               <tr>
@@ -98,7 +98,7 @@ function CartPage() {
             </tbody>
           </table>
 
-          {/* Zhrnutie objednávky */}
+          
           <div className="summary text-end">
             <h4>Celková cena: {calculateTotalPrice()} €</h4>
             <button className="btn btn-success mt-3">Pokračovať na platbu</button>

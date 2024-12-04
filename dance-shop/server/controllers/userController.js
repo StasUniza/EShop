@@ -4,7 +4,7 @@ const pool = require('../config/db');
 const bcrypt = require('bcrypt');
 
 
-// Získať všetkých používateľov
+
 const getUsers = async (req, res) => {
     try {
         const result = await pool.query('SELECT user_id, role_id, first_name, last_name, email, password, phone_number, date_joined, is_active FROM Users');
@@ -20,17 +20,17 @@ const isValidEmail = (email) => {
     return emailRegex.test(email);
 };
 
-// Pridať nového používateľa
+
 
 const createUser = async (req, res) => {
     const {first_name, last_name, email, password, phone_number } = req.body;
 
-    // Overenie povinných polí
+
     if (!first_name || !last_name || !email || !password) {
         return res.status(400).json({ message: 'Všetky povinné polia musia byť vyplnené.' });
     }
 
-    // Overenie formátu emailu
+    
     if (!isValidEmail(email)) {
         return res.status(400).json({ message: 'Neplatný formát emailu.' });
     }
@@ -40,17 +40,16 @@ const createUser = async (req, res) => {
     }
 
     try {
-        // Overenie unikátnosti emailu
+
         const emailCheck = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
         if (emailCheck.rowCount > 0) {
             return res.status(400).json({ message: 'Email už existuje.' });
         }
 
-        // Hashovanie hesla
+
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        // Uloženie používateľa do databázy
         const result = await pool.query(
             `INSERT INTO Users (role_id, first_name, last_name, email, password, phone_number, date_joined, is_active)
              VALUES (2, $1, $2, $3, $4, $5, NOW(), TRUE) RETURNING *`,
@@ -65,17 +64,17 @@ const createUser = async (req, res) => {
 
 
 
-// Aktualizovať používateľa
+
 const updateUser = async (req, res) => {
     const userId = req.params.user_id;
     const { first_name, last_name, email, phone_number, is_active } = req.body;
 
-    // Overenie povinných polí
+
     if (!first_name || !last_name || !email) {
         return res.status(400).json({ message: 'Všetky povinné polia musia byť vyplnené.' });
     }
 
-    // Overenie formátu emailu
+
     if (!isValidEmail(email)) {
         return res.status(400).json({ message: 'Neplatný formát emailu.' });
     }
@@ -83,13 +82,12 @@ const updateUser = async (req, res) => {
     
 
     try {
-        // Overenie unikátnosti emailu, s výnimkou aktuálneho používateľa
+      
         const emailCheck = await pool.query('SELECT * FROM Users WHERE email = $1 AND user_id != $2', [email, userId]);
         if (emailCheck.rowCount > 0) {
             return res.status(400).json({ message: 'Email už existuje.' });
         }
 
-        // Aktualizácia používateľa v databáze
         const result = await pool.query(
             `UPDATE Users
              SET role_id = 2, first_name = $1, last_name = $2, email = $3, phone_number = $4, is_active = $5
@@ -108,12 +106,12 @@ const updateUser = async (req, res) => {
     }
 };
 
-// Odstrániť používateľa
+
 const deleteUser = async (req, res) => {
     const { user_id } = req.params;
 
     try {
-        // Odstránenie používateľa
+        
         const result = await pool.query(`DELETE FROM Users WHERE user_id = $1 RETURNING *`, [user_id]);
 
         if (result.rowCount === 0) {
