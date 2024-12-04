@@ -23,10 +23,10 @@ const isValidEmail = (email) => {
 // Pridať nového používateľa
 
 const createUser = async (req, res) => {
-    const { role_id, first_name, last_name, email, password, phone_number } = req.body;
+    const {first_name, last_name, email, password, phone_number } = req.body;
 
     // Overenie povinných polí
-    if (!role_id || !first_name || !last_name || !email || !password) {
+    if (!first_name || !last_name || !email || !password) {
         return res.status(400).json({ message: 'Všetky povinné polia musia byť vyplnené.' });
     }
 
@@ -53,8 +53,8 @@ const createUser = async (req, res) => {
         // Uloženie používateľa do databázy
         const result = await pool.query(
             `INSERT INTO Users (role_id, first_name, last_name, email, password, phone_number, date_joined, is_active)
-             VALUES ($1, $2, $3, $4, $5, $6, NOW(), TRUE) RETURNING *`,
-            [role_id, first_name, last_name, email, hashedPassword, phone_number || null]
+             VALUES (2, $1, $2, $3, $4, $5, NOW(), TRUE) RETURNING *`,
+            [first_name, last_name, email, hashedPassword, phone_number || null]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -68,10 +68,10 @@ const createUser = async (req, res) => {
 // Aktualizovať používateľa
 const updateUser = async (req, res) => {
     const userId = req.params.user_id;
-    const { role_id, first_name, last_name, email, phone_number, is_active } = req.body;
+    const { first_name, last_name, email, phone_number, is_active } = req.body;
 
     // Overenie povinných polí
-    if (!role_id || !first_name || !last_name || !email) {
+    if (!first_name || !last_name || !email) {
         return res.status(400).json({ message: 'Všetky povinné polia musia byť vyplnené.' });
     }
 
@@ -92,9 +92,9 @@ const updateUser = async (req, res) => {
         // Aktualizácia používateľa v databáze
         const result = await pool.query(
             `UPDATE Users
-             SET role_id = $1, first_name = $2, last_name = $3, email = $4, phone_number = $5, is_active = $6
-             WHERE user_id = $7 RETURNING *`,
-            [role_id, first_name, last_name, email, phone_number || null, is_active, userId]
+             SET role_id = 2, first_name = $1, last_name = $2, email = $3, phone_number = $4, is_active = $5
+             WHERE user_id = $6 RETURNING *`,
+            [first_name, last_name, email, phone_number || null, is_active, userId]
         );
 
         if (result.rowCount === 0) {
