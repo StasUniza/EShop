@@ -58,7 +58,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/users">
-                Prihlásenie
+                Použivatelia
               </Link>
             </li>
             {/* Ikona košíka */}
