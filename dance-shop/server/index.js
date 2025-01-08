@@ -24,7 +24,7 @@ app.use(express.json());
 
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
-
+/*
 const createTestUser = async () => {
     try {
         const email = 'test.user1@example.com';
@@ -58,12 +58,12 @@ const createTestUser = async () => {
     } catch (err) {
         console.error('Chyba pri vytváraní testovacieho používateľa:', err.message);
     }
-};
+};*/
 
 
 app.listen(PORT, async () => {
     console.log(`Server running on http://localhost:${PORT}`);
-    await createTestUser(); 
+   /* await createTestUser(); */
 
 
 /*

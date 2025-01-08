@@ -16,14 +16,16 @@ const getUsers = async (req, res) => {
 };
 
 const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //AI
     return emailRegex.test(email);
+    //return email.includes('@');
 };
 
 
 
 const createUser = async (req, res) => {
     const {first_name, last_name, email, password, phone_number } = req.body;
+    console.log(req.body);
 
 
     if (!first_name || !last_name || !email || !password) {
@@ -39,6 +41,8 @@ const createUser = async (req, res) => {
         return res.status(400).json({ message: 'Heslo musí mať minimálne 6 znakov.' });
     }
 
+    
+
     try {
 
         const emailCheck = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
@@ -49,6 +53,8 @@ const createUser = async (req, res) => {
 
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        console.log(hashedPassword)
 
         const result = await pool.query(
             `INSERT INTO Users (role_id, first_name, last_name, email, password, phone_number, date_joined, is_active)

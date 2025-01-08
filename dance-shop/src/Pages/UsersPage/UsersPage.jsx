@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { getUsers, createUser, deleteUser, updateUser } from '../../services/userService';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import "./UsersPage.css"
 
 function UsersPage() {
     const [users, setUsers] = useState([]);
@@ -17,7 +19,10 @@ function UsersPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, []);// ak je tu nieco tak sa vzdy zavola funkcia ked sa v tom nieco zmeni
+    //zisti co je abortController() a abortCtrl.abort()
+    //zisti v com je lepsie vyvtorit napriklad const load = useCallback() a load dat do array parametra na useEffect
+
 
     const fetchUsers = async () => {
         try {
@@ -56,6 +61,7 @@ function UsersPage() {
         if (!validateForm()) return;
 
         try {
+            
             await createUser(newUser);
             alert('Používateľ bol úspešne vytvorený.');
             setNewUser({
@@ -111,6 +117,21 @@ function UsersPage() {
         }
     };
 
+    const toggleForm = () => {
+        if (showForm) {
+            
+            setNewUser({
+                first_name: '',
+                last_name: '',
+                email: '',
+                password: '',
+                phone_number: '',
+            });
+            setEditingUser(null); 
+        }
+        setShowForm(!showForm); 
+    };
+
 
 /////generovane AI
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Stav pre mobilné zobrazenie
@@ -129,9 +150,9 @@ function UsersPage() {
 ////
 
     return (
-        <div className="container mt-5">
-            <h1 className="text-center mb-4">Používatelia</h1>
-            <button className="btn btn-primary mb-3" onClick={() => setShowForm(!showForm)}>
+        <div className="container mt-5 users">
+            <h1 className="text-center mb-4 title">Používatelia</h1>
+            <button className="btn btn-primary mb-3" onClick={toggleForm}>
                 {showForm ? 'Zatvoriť formulár' : 'Pridať používateľa'}
             </button>
             {showForm && (
@@ -165,6 +186,7 @@ function UsersPage() {
                             name="last_name"
                             value={newUser.last_name}
                             onChange={handleInputChange}
+                            required
                         />
                     </div>
                     <div className="col-md-6">
@@ -236,7 +258,7 @@ function UsersPage() {
                         </p>
                         <div className="d-flex justify-content-end">
                             <button
-                                className="btn btn-warning me-2"
+                                className="btn btn-modify me-2"
                                 onClick={() => handleEditUser(user)}
                             >
                                 Upraviť
@@ -275,7 +297,7 @@ function UsersPage() {
                             <td>{user.email}</td>
                             <td>
                                 <button
-                                    className="btn btn-warning me-2"
+                                    className="btn btn-modify me-2"
                                     onClick={() => handleEditUser(user)}
                                 >
                                     Upraviť
