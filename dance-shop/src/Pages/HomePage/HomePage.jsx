@@ -3,9 +3,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './HomePage.css';
-import heroImage from '../../Assets/Images/Dance_pozadie_pc.png';
 import imagePc from '../../Assets/Images/Dance_pozadie_pc.png';
 import imageMobile from '../../Assets/Images/Dance_pozadie.png';
 import categoryShoes from '../../Assets/Images/dance_shoes.png';

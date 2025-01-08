@@ -4,6 +4,12 @@
     padding: 20px;
     background-color: #1A2B48;
     color: #ffffff;
+} 
+
+
+
+.title {
+    color: white;
 }
 
 .users-table {
@@ -19,6 +25,17 @@
 }
 
 .users-table th {
-    background-color: #D4AF37;
+    background-color: white;
+    color: #1A2B48;
+}
+
+.btn-modify {
+    background-color: #D4AF37; 
+    color: white;
+    border: none;
+}
+
+.btn-modify:hover {
+    background-color: #c39831;
     color: #1A2B48;
 }
