@@ -3,68 +3,81 @@
 import React, { useState, useEffect } from 'react';
 import { getUsers, createUser, deleteUser, updateUser } from '../../services/userService';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import "./UsersPage.css"
+import './UsersPage.css';
+
 
 function UsersPage() {
-    const [users, setUsers] = useState([]);
-    const [newUser, setNewUser] = useState({
+    const [users, setUsers] = useState([]); 
+    const [newUser, setNewUser] = useState({  
         first_name: '',
         last_name: '',
         email: '',
         password: '',
         phone_number: '',
     });
-    const [editingUser, setEditingUser] = useState(null);
+    const [editingUser, setEditingUser] = useState(null); 
     const [showForm, setShowForm] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+    
     useEffect(() => {
-        fetchUsers();
-    }, []);// ak je tu nieco tak sa vzdy zavola funkcia ked sa v tom nieco zmeni
-    //zisti co je abortController() a abortCtrl.abort()
-    //zisti v com je lepsie vyvtorit napriklad const load = useCallback() a load dat do array parametra na useEffect
+        fetchUsers(); 
+
+      
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
 
-    const fetchUsers = async () => {
-        try {
-            const data = await getUsers();
-            setUsers(data);
-        } catch (error) {
-            console.error('Chyba pri načítavaní používateľov:', error);
-        }
-    };
+      
+        const fetchUsers = async () => {
+            try {
+                const data = await getUsers();
+                setUsers(data);
+            } catch (error) {
+                console.error('Chyba pri načítavaní používateľov:', error);
+            }
+        };
+    
+       
+        const handleInputChange = (e) => {
+            const { name, value } = e.target;
+            setNewUser({ ...newUser, [name]: value });
+        };
+    
+     
+        const validateForm = () => {
+            const { first_name, last_name, email, password } = newUser;
+            if (!first_name || !last_name || !email) {
+                setErrorMessage('Všetky povinné polia musia byť vyplnené.');
+                return false;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                setErrorMessage('Neplatný formát emailu.');
+                return false;
+            }
+            if (!editingUser && password.length < 6) {
+                setErrorMessage('Heslo musí mať minimálne 6 znakov.');
+                return false;
+            }
+            return true;
+        };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewUser({ ...newUser, [name]: value });
-    };
-
-    const validateForm = () => {
-        const { first_name, last_name, email, password } = newUser;
-        if (!first_name || !last_name || !email) {
-            alert('Všetky povinné polia musia byť vyplnené.');
-            return false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Neplatný formát emailu.');
-            return false;
-        }
-        if (!editingUser && password.length < 6) {
-            alert('Heslo musí mať minimálne 6 znakov.');
-            return false;
-        }
-        return true;
-    };
-
+          
     const handleCreateUser = async (e) => {
         e.preventDefault();
+        setErrorMessage('');
+
         if (!validateForm()) return;
 
         try {
-            
             await createUser(newUser);
             alert('Používateľ bol úspešne vytvorený.');
-            setNewUser({
+            setNewUser({ 
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -74,26 +87,20 @@ function UsersPage() {
             setShowForm(false);
             fetchUsers();
         } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+                setErrorMessage(error.response.data.message);
+            } else {
+                setErrorMessage('Došlo k neočakávanej chybe.');
+            }
             console.error('Chyba pri vytváraní používateľa:', error);
         }
     };
 
-    const handleDeleteUser = async (userId) => {
-        if (window.confirm('Naozaj chcete vymazať tohto používateľa?')) {
-            try {
-                await deleteUser(userId);
-                alert('Používateľ bol úspešne vymazaný.');
-                fetchUsers();
-            } catch (error) {
-                console.error('Chyba pri vymazávaní používateľa:', error);
-            }
-        }
-    };
-
+    
     const handleEditUser = (user) => {
-        setEditingUser(user);
-        setShowForm(true);
-        setNewUser({
+        setEditingUser(user); 
+        setShowForm(true); 
+        setNewUser({ 
             first_name: user.first_name,
             last_name: user.last_name,
             email: user.email,
@@ -104,6 +111,8 @@ function UsersPage() {
 
     const handleUpdateUser = async (e) => {
         e.preventDefault();
+        setErrorMessage(''); 
+
         if (!validateForm()) return;
 
         try {
@@ -111,15 +120,33 @@ function UsersPage() {
             alert('Používateľ bol úspešne aktualizovaný.');
             setEditingUser(null);
             setShowForm(false);
-            fetchUsers();
+            fetchUsers(); 
         } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+                setErrorMessage(error.response.data.message); 
+            } else {
+                setErrorMessage('Došlo k neočakávanej chybe.');
+            }
             console.error('Chyba pri aktualizácii používateľa:', error);
         }
     };
 
+    
+    const handleDeleteUser = async (userId) => {
+        if (window.confirm('Naozaj chcete vymazať tohto používateľa?')) {
+            try {
+                await deleteUser(userId);
+                alert('Používateľ bol úspešne vymazaný.');
+                fetchUsers(); 
+            } catch (error) {
+                console.error('Chyba pri vymazávaní používateľa:', error);
+            }
+        }
+    };
+
+
     const toggleForm = () => {
         if (showForm) {
-            
             setNewUser({
                 first_name: '',
                 last_name: '',
@@ -127,40 +154,29 @@ function UsersPage() {
                 password: '',
                 phone_number: '',
             });
-            setEditingUser(null); 
+            setEditingUser(null);
         }
-        setShowForm(!showForm); 
+        setShowForm(!showForm);
     };
-
-
-/////generovane AI
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Stav pre mobilné zobrazenie
-
-    useEffect(() => {
-        fetchUsers();
-
-        // Event listener na sledovanie veľkosti obrazovky
-        const handleResize = () => setIsMobile(window.innerWidth <= 768);
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-////
 
     return (
         <div className="container mt-5 users">
             <h1 className="text-center mb-4 title">Používatelia</h1>
+            
+           
+            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+
+            
             <button className="btn btn-primary mb-3" onClick={toggleForm}>
                 {showForm ? 'Zatvoriť formulár' : 'Pridať používateľa'}
             </button>
+
+            
             {showForm && (
                 <form
                     onSubmit={editingUser ? handleUpdateUser : handleCreateUser}
                     className="row g-3 mb-4"
                 >
-                    
                     <div className="col-md-6">
                         <label htmlFor="first_name" className="form-label">
                             Meno
@@ -240,79 +256,77 @@ function UsersPage() {
                 </form>
             )}
 
-{isMobile ? (
-    
-    <div className="row">
-        {users.map((user) => (
-            <div key={user.user_id} className="col-12 mb-3">
-                <div className="card">
-                    <div className="card-body">
-                        <h5 className="card-title">
-                            {user.first_name} {user.last_name}
-                        </h5>
-                        <p className="card-text">
-                            <strong>Email:</strong> {user.email}
-                        </p>
-                        <p className="card-text">
-                            <strong>ID:</strong> {user.user_id}
-                        </p>
-                        <div className="d-flex justify-content-end">
-                            <button
-                                className="btn btn-modify me-2"
-                                onClick={() => handleEditUser(user)}
-                            >
-                                Upraviť
-                            </button>
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => handleDeleteUser(user.user_id)}
-                            >
-                                Vymazať
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        ))}
-    </div>
-) : (
-
-
-            <table className="table table-striped table-responsive">
-                <thead className="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Meno</th>
-                        <th>Email</th>
-                        <th>Akcie</th>
-                    </tr>
-                </thead>
-                <tbody>
+            
+            {isMobile ? (
+                <div className="row">
                     {users.map((user) => (
-                        <tr key={user.user_id}>
-                            <td>{user.user_id}</td>
-                            <td>
-                                {user.first_name} {user.last_name}
-                            </td>
-                            <td>{user.email}</td>
-                            <td>
-                                <button
-                                    className="btn btn-modify me-2"
-                                    onClick={() => handleEditUser(user)}
-                                >
-                                    Upraviť
-                                </button>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleDeleteUser(user.user_id)}
-                                >
-                                    Vymazať
-                                </button>
-                            </td>
-                        </tr>
+                        <div key={user.user_id} className="col-12 mb-3">
+                            <div className="card">
+                                <div className="card-body">
+                                    <h5 className="card-title">
+                                        {user.first_name} {user.last_name}
+                                    </h5>
+                                    <p className="card-text">
+                                        <strong>Email:</strong> {user.email}
+                                    </p>
+                                    <p className="card-text">
+                                        <strong>ID:</strong> {user.user_id}
+                                    </p>
+                                    <div className="d-flex justify-content-end">
+                                        <button
+                                            className="btn btn-modify me-2"
+                                            onClick={() => handleEditUser(user)}
+                                        >
+                                            Upraviť
+                                        </button>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleDeleteUser(user.user_id)}
+                                        >
+                                            Vymazať
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     ))}
-                </tbody>
-            </table>
+                </div>
+            ) : (
+                <table className="table table-striped table-responsive">
+                    <thead className="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Meno</th>
+                            <th>Email</th>
+                            <th>Akcie</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map((user) => (
+                            <tr key={user.user_id}>
+                                <td>{user.user_id}</td>
+                                <td>
+                                    {user.first_name} {user.last_name}
+                                </td>
+                                <td>{user.email}</td>
+                                <td>
+                                    <button
+                                        className="btn btn-modify me-2"
+                                        onClick={() => handleEditUser(user)}
+                                    >
+                                        Upraviť
+                                    </button>
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => handleDeleteUser(user.user_id)}
+                                    >
+                                        Vymazať
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             )}
         </div>
     );
