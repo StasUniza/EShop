@@ -21,4 +21,15 @@ const authenticate = (req, res, next) => {
     }
 };
 
-module.exports = authenticate;
+// *** Nový middleware ***
+const authenticateAdmin = (req, res, next) => {
+    if (!req.user || req.user.roleId !== 1) {
+        return res.status(403).json({ message: 'Len pre admina.' });
+    }
+    next();
+};
+
+module.exports = {
+    authenticate,
+    authenticateAdmin
+};

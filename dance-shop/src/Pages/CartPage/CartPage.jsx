@@ -1,51 +1,67 @@
-// src/Pages/CartPage/CartPage.jsx
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CartPage.css';
+import {
+  getCart,
+  removeCartItem,
+  updateCartItem,
+} from '../../services/cartService';
 
 function CartPage() {
-  
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Tanečné topánky Classic',
-      price: 59.99,
-      quantity: 1,
-      image: require('../../Assets/Images/dance_shoes.png'),
-    },
-    {
-      id: 2,
-      name: 'Tanečné šaty Elegance',
-      price: 89.99,
-      quantity: 2,
-      image: require('../../Assets/Images/dance_dress.png'),
-    },
-    {
-      id: 3,
-      name: 'Kefa na tanečné topánky',
-      price: 9.99,
-      quantity: 1,
-      image: require('../../Assets/Images/dance_shoe_brush.png'),
-    },
-  ]);
+  // Stav pre položky v košíku
+  const [cartItems, setCartItems] = useState([]);
 
-  
-  const handleRemoveItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+  // Načítame dáta z backendu pri mountnutí komponentu
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getCart(); 
+        // očakávame tvar: { cart: { ... }, items: [ ... ] }
+        if (result.items) {
+          setCartItems(result.items);
+        }
+      } catch (error) {
+        console.error('Chyba pri načítavaní košíka:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Odstránenie položky z košíka
+  const handleRemoveItem = async (cart_item_id) => {
+    try {
+      await removeCartItem(cart_item_id);
+      setCartItems((prevItems) => prevItems.filter((item) => item.cart_item_id !== cart_item_id));
+    } catch (error) {
+      console.error('Chyba pri odstraňovaní položky:', error);
+    }
   };
 
-  
-  const handleQuantityChange = (id, newQuantity) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
+  // Zmena množstva
+  const handleQuantityChange = async (cart_item_id, newQuantity) => {
+    if (newQuantity < 1) return; // Množstvo aspoň 1
+    try {
+      await updateCartItem(cart_item_id, newQuantity);
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.cart_item_id === cart_item_id ? { ...item, quantity: newQuantity } : item
+        )
+      );
+    } catch (error) {
+      console.error('Chyba pri úprave množstva:', error);
+    }
   };
 
-  
-  const calculateTotalPrice = () =>
-    cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+  // Výpočet celkovej ceny
+  const calculateTotalPrice = () => {
+    return cartItems
+      .reduce((total, item) => {
+        const priceNum = parseFloat(item.price);
+        if (isNaN(priceNum)) return total; 
+        return total + priceNum * item.quantity;
+      }, 0)
+      .toFixed(2);
+  };
 
   return (
     <div className="cart-page container">
@@ -55,7 +71,6 @@ function CartPage() {
         <p className="text-center text-white">Váš košík je prázdny.</p>
       ) : (
         <>
-         
           <table className="table table-dark table-hover">
             <thead>
               <tr>
@@ -68,37 +83,45 @@ function CartPage() {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <img src={item.image} alt={item.name} className="cart-item-image" />
-                  </td>
-                  <td>{item.name}</td>
-                  <td>{item.price.toFixed(2)} €</td>
-                  <td>
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      min="1"
-                      className="form-control"
-                      onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-                    />
-                  </td>
-                  <td>{(item.price * item.quantity).toFixed(2)} €</td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleRemoveItem(item.id)}
-                    >
-                      Odstrániť
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {cartItems.map((item) => {
+                const priceNum = parseFloat(item.price) || 0;
+                const itemTotal = (priceNum * item.quantity).toFixed(2);
+
+                return (
+                  <tr key={item.cart_item_id}>
+                    <td>
+                      <img
+                        src={item.image_url || require('../../Assets/Images/dance_shoes.png')} 
+                        alt={item.name}
+                        className="cart-item-image"
+                      />
+                    </td>
+                    <td>{item.name}</td>
+                    <td>{priceNum.toFixed(2)} €</td>
+                    <td>
+                      <input
+                        type="number"
+                        min="1"
+                        value={item.quantity}
+                        className="form-control"
+                        onChange={(e) => handleQuantityChange(item.cart_item_id, parseInt(e.target.value))}
+                      />
+                    </td>
+                    <td>{itemTotal} €</td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleRemoveItem(item.cart_item_id)}
+                      >
+                        Odstrániť
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
 
-          
           <div className="summary text-end">
             <h4>Celková cena: {calculateTotalPrice()} €</h4>
             <button className="btn btn-success mt-3">Pokračovať na platbu</button>

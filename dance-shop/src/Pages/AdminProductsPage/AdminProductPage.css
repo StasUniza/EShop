@@ -1,0 +1,67 @@
+.admin-product-page {
+    min-height: 100vh;
+  }
+  
+  .admin-product-form {
+    background-color: #1A2B48;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  .form-dark .form-control {
+    background-color: #F2F2F2;
+    border: none;
+    color: #1A2B48;
+  }
+  
+  .form-dark .form-control:focus {
+    box-shadow: none;
+  }
+  
+  .form-dark label {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .table-dark {
+    background-color: #1A2B48;
+  }
+  
+  .table-dark th,
+  .table-dark td {
+    vertical-align: middle;
+  }
+  
+  .btn-success,
+  .btn-warning,
+  .btn-danger {
+    font-weight: bold;
+  }
+  
+  .btn-success {
+    background-color: #B0C94E; /* Napr. iný odtieň zelenej ak chceš */
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background-color: #9AAF44;
+  }
+  
+  .btn-warning {
+    background-color: #FFC107;
+    border: none;
+  }
+  
+  .btn-warning:hover {
+    background-color: #E0A800;
+  }
+  
+  .btn-danger {
+    background-color: #D9534F;
+    border: none;
+  }
+  
+  .btn-danger:hover {
+    background-color: #C9302C;
+  }
+  

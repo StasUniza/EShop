@@ -10,7 +10,9 @@ import './App.css';
 import CartPage from './Pages/CartPage/CartPage';
 import UserManagement from './Pages/UsersPage/UsersPage';
 import AddUserForm from './Pages/UsersPage/AddUserForm'; // Import nového komponentu
-import ProtectedRoute from './components/ProtectedRoute';
+
+import AdminProductsPage from './Pages/AdminProductsPage/AdminProductsPage';
+import ProtectedRoute from './components/ProtectedRoute'; // ak ho používaš
 
 
 
@@ -33,7 +35,7 @@ function App() {
                     <Route path="/users" element={<UserManagement />} />
                     <Route path="/add-user" element={<AddUserForm />} />
                     <Route path="/products" element={<ProtectedRoute><ProductsPage /></ProtectedRoute>} />
-
+                    <Route path="/admin/products" element={ <ProtectedRoute> <AdminProductsPage /></ProtectedRoute>}/>
                 </Routes>
             </div>
         </Router>
