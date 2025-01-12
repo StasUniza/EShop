@@ -20,7 +20,7 @@ function LoginPage() {
         try {
             await loginUser(credentials);
             alert('Prihlásenie úspešné.');
-            navigate('/products'); // Presmerovanie na produkty
+            navigate('/products'); 
         } catch (error) {
             setErrorMessage(
                 error.response?.data?.message || 'Došlo k chybe pri prihlasovaní.'

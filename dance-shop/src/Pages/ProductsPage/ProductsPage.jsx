@@ -10,7 +10,7 @@ function ProductsPage() {
 
   const handleAddToCart = async (productId) => {
     try {
-      await addToCart(productId, 1); // predpokladáme quantity = 1
+      await addToCart(productId, 1); 
       alert('Produkt pridaný do košíka');
     } catch (error) {
       console.error('Chyba pri pridávaní do košíka:', error);
@@ -20,7 +20,7 @@ function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await getAllProducts(); // Z backendu
+        const data = await getAllProducts(); 
         setProducts(data);
       } catch (error) {
         console.error('Chyba pri načítavaní produktov:', error);
@@ -29,7 +29,7 @@ function ProductsPage() {
     fetchProducts();
   }, []);
 
-  // Príklad jednoduchého filtrovania
+  
   const filteredProducts =
     selectedCategory === 'všetky'
       ? products
@@ -48,12 +48,10 @@ function ProductsPage() {
         >
           Všetky
         </button>
-        {/* Ďalšie kategórie ako topánky, oblečenie atď. */}
       </div>
 
       <div className="row justify-content-center">
         {filteredProducts.map((product) => {
-          // Bezpečná konverzia reťazca na číslo
           const priceNum = parseFloat(product.price);
 
           return (

@@ -39,7 +39,6 @@ function AdminProductPage() {
 
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
-    // Pre number polia (price, stock_quantity atď.) môžeme konvertovať na číslo:
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'number' ? Number(value) : value,
@@ -146,7 +145,6 @@ function AdminProductPage() {
     <div className="admin-product-page container">
       <h1 className="text-center my-5 text-white">Správa produktov (Admin)</h1>
 
-      {/* Form */}
       <div className="admin-product-form mb-4">
         <form className="form-dark" onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -231,7 +229,6 @@ function AdminProductPage() {
         </form>
       </div>
 
-      {/* Zoznam produktov */}
       <table className="table table-dark table-hover">
         <thead>
           <tr>

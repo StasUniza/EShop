@@ -21,7 +21,7 @@ const authenticate = (req, res, next) => {
     }
 };
 
-// *** Nový middleware ***
+
 const authenticateAdmin = (req, res, next) => {
     if (!req.user || req.user.roleId !== 1) {
         return res.status(403).json({ message: 'Len pre admina.' });

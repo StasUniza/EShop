@@ -12,17 +12,14 @@ const registerUser = async (req, res) => {
     }
 
     try {
-        // Overenie, či e-mail už existuje
         const emailCheck = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
         if (emailCheck.rowCount > 0) {
             return res.status(400).json({ message: 'E-mail už existuje.' });
         }
 
-        // Hash hesla
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        // Vloženie nového používateľa do databázy
         const newUser = await pool.query(
             `INSERT INTO Users (role_id, first_name, last_name, email, password, phone_number, date_joined, is_active)
              VALUES (2, $1, $2, $3, $4, $5, NOW(), TRUE) RETURNING *`,

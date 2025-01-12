@@ -1,0 +1,19 @@
+.profile-page {
+    min-height: 100vh;
+  }
+  
+  .profile-form-dark .form-control {
+    background-color: #F2F2F2;
+    border: none;
+    color: #1A2B48;
+  }
+  
+  .profile-form-dark .form-control:focus {
+    box-shadow: none;
+  }
+  
+  .profile-form-dark .form-label {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  

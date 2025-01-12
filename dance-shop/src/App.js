@@ -9,10 +9,12 @@ import Navbar from './components/Navbar/Navbar';
 import './App.css';
 import CartPage from './Pages/CartPage/CartPage';
 import UserManagement from './Pages/UsersPage/UsersPage';
-import AddUserForm from './Pages/UsersPage/AddUserForm'; // Import nového komponentu
+import AddUserForm from './Pages/UsersPage/AddUserForm'; 
 
 import AdminProductsPage from './Pages/AdminProductsPage/AdminProductsPage';
-import ProtectedRoute from './components/ProtectedRoute'; // ak ho používaš
+import ProtectedRoute from './components/ProtectedRoute'; 
+import ProfilePage from './Pages/ProfilePage';
+
 
 
 
@@ -34,8 +36,10 @@ function App() {
                     <Route path='/cart' element={<CartPage/>}/>
                     <Route path="/users" element={<UserManagement />} />
                     <Route path="/add-user" element={<AddUserForm />} />
-                    <Route path="/products" element={<ProtectedRoute><ProductsPage /></ProtectedRoute>} />
+                    <Route path="/products" element={<ProductsPage />} />
                     <Route path="/admin/products" element={ <ProtectedRoute> <AdminProductsPage /></ProtectedRoute>}/>
+                    <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+
                 </Routes>
             </div>
         </Router>

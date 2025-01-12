@@ -7,15 +7,12 @@ import {
 } from '../../services/cartService';
 
 function CartPage() {
-  // Stav pre položky v košíku
   const [cartItems, setCartItems] = useState([]);
 
-  // Načítame dáta z backendu pri mountnutí komponentu
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getCart(); 
-        // očakávame tvar: { cart: { ... }, items: [ ... ] }
         if (result.items) {
           setCartItems(result.items);
         }
@@ -27,7 +24,6 @@ function CartPage() {
     fetchData();
   }, []);
 
-  // Odstránenie položky z košíka
   const handleRemoveItem = async (cart_item_id) => {
     try {
       await removeCartItem(cart_item_id);
@@ -37,9 +33,8 @@ function CartPage() {
     }
   };
 
-  // Zmena množstva
   const handleQuantityChange = async (cart_item_id, newQuantity) => {
-    if (newQuantity < 1) return; // Množstvo aspoň 1
+    if (newQuantity < 1) return; 
     try {
       await updateCartItem(cart_item_id, newQuantity);
       setCartItems((prevItems) =>
@@ -52,7 +47,6 @@ function CartPage() {
     }
   };
 
-  // Výpočet celkovej ceny
   const calculateTotalPrice = () => {
     return cartItems
       .reduce((total, item) => {

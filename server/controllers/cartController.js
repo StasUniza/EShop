@@ -1,13 +1,10 @@
 const pool = require('../config/db');
 
-// Zobraziť košík pre prihláseného používateľa
 const getCart = async (req, res) => {
   try {
     const userId = req.user.userId; // z JWT
-    // Zistíme, či má používateľ vôbec košík
     const cartQuery = await pool.query('SELECT * FROM Cart WHERE user_id = $1', [userId]);
     if (cartQuery.rowCount === 0) {
-      // Vytvoríme nový košík
       const newCart = await pool.query(
         'INSERT INTO Cart (user_id, created_at, updated_at) VALUES ($1, NOW(), NOW()) RETURNING *',
         [userId]
@@ -16,7 +13,6 @@ const getCart = async (req, res) => {
     }
 
     const cart = cartQuery.rows[0];
-    // Získame položky
     const itemsQuery = await pool.query(
       `SELECT cartitem.*, product.name, product.price, product.image_url 
        FROM cartitem 
@@ -32,17 +28,14 @@ const getCart = async (req, res) => {
   }
 };
 
-// Pridať produkt do košíka
 const addToCart = async (req, res) => {
   try {
     const userId = req.user.userId;
     const { product_id, quantity } = req.body;
 
-    // Najprv zistíme, či existuje košík
     let cartQuery = await pool.query('SELECT * FROM Cart WHERE user_id = $1', [userId]);
     let cart = cartQuery.rows[0];
     if (!cart) {
-      // Vytvoríme nový košík
       const newCart = await pool.query(
         'INSERT INTO Cart (user_id, created_at, updated_at) VALUES ($1, NOW(), NOW()) RETURNING *',
         [userId]
@@ -50,14 +43,12 @@ const addToCart = async (req, res) => {
       cart = newCart.rows[0];
     }
 
-    // Overíme, či položka už existuje v košíku
     const existingItem = await pool.query(
       'SELECT * FROM CartItem WHERE cart_id = $1 AND product_id = $2',
       [cart.cart_id, product_id]
     );
 
     if (existingItem.rowCount > 0) {
-      // Ak existuje, zvýšime množstvo
       const updatedQuantity = existingItem.rows[0].quantity + quantity;
       const updatedItem = await pool.query(
         'UPDATE CartItem SET quantity = $1 WHERE cart_item_id = $2 RETURNING *',
@@ -65,7 +56,6 @@ const addToCart = async (req, res) => {
       );
       return res.status(200).json({ message: 'Položka v košíku aktualizovaná.', item: updatedItem.rows[0] });
     } else {
-      // Inak vytvoríme novú položku
       const newItem = await pool.query(
         'INSERT INTO CartItem (cart_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *',
         [cart.cart_id, product_id, quantity]
@@ -78,13 +68,12 @@ const addToCart = async (req, res) => {
   }
 };
 
-// Upraviť množstvo položky v košíku
+
 const updateCartItem = async (req, res) => {
   try {
     const userId = req.user.userId;
     const { cart_item_id, quantity } = req.body;
 
-    // Možno overiť, či položka patrí rovnakému košíku
     const itemQuery = await pool.query('SELECT * FROM CartItem WHERE cart_item_id = $1', [cart_item_id]);
     if (itemQuery.rowCount === 0) {
       return res.status(404).json({ message: 'Položka v košíku neexistuje.' });
@@ -101,7 +90,6 @@ const updateCartItem = async (req, res) => {
   }
 };
 
-// Odstrániť položku z košíka
 const removeCartItem = async (req, res) => {
   try {
     const { cart_item_id } = req.params;

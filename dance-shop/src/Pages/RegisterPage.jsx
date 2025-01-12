@@ -10,7 +10,7 @@ function RegisterPage() {
         email: '',
         password: '',
         confirmPassword: '',
-        phone_number: '', // Nepovinné pole
+        phone_number: '', 
     });
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ function RegisterPage() {
 
         const { first_name, last_name, email, password, confirmPassword, phone_number } = formData;
 
-        // Validácia
+        // 
         if (!first_name || !last_name || !email || !password || !confirmPassword) {
             setErrorMessage('Vyplňte všetky povinné polia.');
             return;
@@ -38,16 +38,15 @@ function RegisterPage() {
         }
 
         try {
-            // Odošleme dáta na backend
             await axios.post('/api/auth/register', {
                 first_name,
                 last_name,
                 email,
                 password,
-                phone_number: phone_number || null, // Ak nie je vyplnené, odošleme null
+                phone_number: phone_number || null, 
             });
             alert('Registrácia bola úspešná.');
-            navigate('/login'); // Presmerovanie na prihlasovaciu stránku
+            navigate('/login'); 
         } catch (error) {
             setErrorMessage(
                 error.response?.data?.message || 'Došlo k chybe pri registrácii.'

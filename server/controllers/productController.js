@@ -2,7 +2,7 @@
 
 const pool = require('../config/db');
 
-// Získať všetky produkty
+
 const getAllProducts = async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM Product WHERE is_active = TRUE');
@@ -13,7 +13,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-// Získať detail produktu podľa ID
+
 const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -28,11 +28,11 @@ const getProductById = async (req, res) => {
   }
 };
 
-// Pridať nový produkt (iba admin)
+
 const createProduct = async (req, res) => {
   const { category_id, name, description, price, stock_quantity, sku, image_url } = req.body;
   
-  // Validácia základných polí
+ 
   if (!category_id || !name || !price || !stock_quantity || !sku) {
     return res.status(400).json({ message: 'Povinné údaje (category_id, name, price, stock_quantity, sku) nie sú vyplnené.' });
   }
@@ -52,7 +52,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// Upraviť existujúci produkt (iba admin)
+
 const updateProduct = async (req, res) => {
   const { id } = req.params;
   const { category_id, name, description, price, stock_quantity, sku, image_url, is_active } = req.body;
@@ -84,7 +84,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// Vymazať (deaktivovať) produkt (iba admin)
+
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {

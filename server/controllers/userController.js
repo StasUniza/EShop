@@ -5,6 +5,33 @@ const bcrypt = require('bcrypt');
 
 
 
+const getProfile = async (req, res) => {
+    const userId = req.user.userId;
+    try {
+      const result = await pool.query('SELECT first_name, last_name, email, phone_number FROM Users WHERE user_id = $1', [userId]);
+      res.status(200).json(result.rows[0]);
+    } catch (error) {
+      res.status(500).json({ message: 'Chyba pri načítavaní profilu.' });
+    }
+  };
+  
+  const updateProfile = async (req, res) => {
+    const userId = req.user.userId;
+    const { first_name, last_name, phone_number } = req.body;
+    // plus validácia
+    try {
+      await pool.query(
+        'UPDATE Users SET first_name = $1, last_name = $2, phone_number = $3 WHERE user_id = $4',
+        [first_name, last_name, phone_number, userId]
+      );
+      res.status(200).json({ message: 'Profil upravený.' });
+    } catch (error) {
+      res.status(500).json({ message: 'Chyba pri úprave profilu.' });
+    }
+  };
+  
+
+
 const getUsers = async (req, res) => {
     try {
         const result = await pool.query('SELECT user_id, role_id, first_name, last_name, email, password, phone_number, date_joined, is_active FROM Users');
@@ -131,4 +158,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { getUsers, createUser, updateUser, deleteUser };
+module.exports = { getUsers, createUser, updateUser, getProfile, updateProfile };

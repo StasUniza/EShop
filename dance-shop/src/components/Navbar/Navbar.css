@@ -2,71 +2,70 @@
 
 
 .navbar {
-    border-bottom-color: #D4AF37;
-    
-    border-bottom-color: #D4AF37;
+  border-bottom-color: #D4AF37;
+  
+  border-bottom-color: #D4AF37;
 }
 
 
 .navbar.bg-custom {
-    background-color: #1A2A42; 
-  }
+  background-color: #1A2A42; 
+}
 
 
-  .logo-img {
-    height: 40px;
-  }
-  
-  .navbar-brand span {
-    color: #D4AF37; 
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
- 
-  .nav-link {
-    color: #FFFFFF;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-  
-  .nav-link:hover {
-    color: #D4AF37;
-  }
-  
+.logo-img {
+  height: 40px;
+}
 
-  .form-control {
-    background-color: #F2F2F2;
-    border: none;
-    color: #1A2B48;
-  }
-  
-  .form-control:focus {
-    box-shadow: none;
-  }
-  
-  .btn-search {
-    background-color: #D4AF37;
-    color: #1A2B48;
-    border: none;
-  }
-  
-  .btn-search:hover {
-    background-color: #B29700;
-    color: #FFFFFF;
-  }
-  
+.navbar-brand span {
+  color: #D4AF37; 
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
-  .nav-link .bi {
-    font-size: 1.5rem;
-  }
-  
-  .badge.bg-gold {
-    background-color: #D4AF37;
-    color: #1A2B48;
-    font-size: 0.75rem;
-    padding: 4px 6px;
-  }
-  
- 
-  
+
+.nav-link {
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.nav-link:hover {
+  color: #D4AF37;
+}
+
+
+.form-control {
+  background-color: #F2F2F2;
+  border: none;
+  color: #1A2B48;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.btn-search {
+  background-color: #D4AF37;
+  color: #1A2B48;
+  border: none;
+}
+
+.btn-search:hover {
+  background-color: #B29700;
+  color: #FFFFFF;
+}
+
+
+.nav-link .bi {
+  font-size: 1.5rem;
+}
+
+.badge.bg-gold {
+  background-color: #D4AF37;
+  color: #1A2B48;
+  font-size: 0.75rem;
+  padding: 4px 6px;
+}
+
+
