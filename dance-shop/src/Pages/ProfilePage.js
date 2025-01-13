@@ -76,8 +76,7 @@ function ProfilePage() {
 
   const handlePasswordSave = async (e) => {
     e.preventDefault();
-    // Tu by si volal endpoint na zmenu hesla (napr. updatePassword).
-    // Skontroluj oldPassword, newPassword, confirmNewPassword...
+    
     setMessage('Heslo bolo úspešne zmenené.');
   };
 
@@ -90,7 +89,7 @@ function ProfilePage() {
       <h1 className="text-white">Môj profil</h1>
       {message && <div className="alert alert-info">{message}</div>}
 
-      {/* Tabs */}
+      
       <ul className="nav nav-tabs mb-4">
         <li className="nav-item">
           <button

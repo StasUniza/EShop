@@ -1,3 +1,4 @@
+//src\Pages\AdminProductsPage\AdminProductsPage.js
 import React, { useEffect, useState } from 'react';
 import './AdminProductPage.css';
 import {

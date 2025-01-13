@@ -12,7 +12,6 @@ const {
 
 const router = express.Router();
 
-// Verejné/hlavné user routy
 router.get('/', getUsers);
 router.post('/', createUser);
 router.put('/:user_id', updateUser);
@@ -20,7 +19,6 @@ router.put('/:user_id', updateUser);
 
 const { authenticate } = require('../middlewares/authMiddleware');
 
-// Chránené routy pre profil
 router.get('/me', authenticate, getProfile);
 router.put('/me', authenticate, updateProfile);
 
