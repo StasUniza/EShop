@@ -14,6 +14,7 @@ function UsersPage() {
         email: '',
         password: '',
         phone_number: '',
+        role_id: '2',
     });
     const [editingUser, setEditingUser] = useState(null); 
     const [showForm, setShowForm] = useState(false);
@@ -50,8 +51,8 @@ function UsersPage() {
     
      
         const validateForm = () => {
-            const { first_name, last_name, email, password } = newUser;
-            if (!first_name || !last_name || !email) {
+            const { first_name, last_name, email, password, role_id } = newUser;
+            if (!first_name || !last_name || !email || !role_id) {
                 setErrorMessage('Všetky povinné polia musia byť vyplnené.');
                 return false;
             }
@@ -106,6 +107,7 @@ function UsersPage() {
             email: user.email,
             password: '',
             phone_number: user.phone_number,
+            role_id: user.role_id,
         });
     };
 
@@ -248,6 +250,21 @@ function UsersPage() {
                             onChange={handleInputChange}
                         />
                     </div>
+                    <div className="col-md-6">
+    <label htmlFor="role_id" className="form-label">Rola</label>
+    <select
+        id="role_id"
+        name="role_id"
+        className="form-control"
+        value={newUser.role_id || ''}
+        onChange={handleInputChange}
+        required
+    >
+        <option value="">Vyberte rolu</option>
+        <option value="1">Admin</option>
+        <option value="2">User</option>
+    </select>
+</div>
                     <div className="col-12">
                         <button type="submit" className="btn btn-success">
                             {editingUser ? 'Aktualizovať' : 'Uložiť'}
@@ -293,7 +310,7 @@ function UsersPage() {
                 <table className="table table-striped table-responsive">
                     <thead className="table-dark">
                         <tr>
-                            
+                            <th>Rola</th>
                             <th>Meno</th>
                             <th>Email</th>
                             <th>Akcie</th>
@@ -302,7 +319,7 @@ function UsersPage() {
                     <tbody>
                         {users.map((user) => (
                             <tr key={user.user_id}>
-                               
+                               <td>{user.role_name}</td>
                                 <td>
                                     {user.first_name} {user.last_name}
                                 </td>
