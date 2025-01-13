@@ -1,0 +1,17 @@
+Návod na inštaláciu 
+Je potrebné stiahnuť projekt z GitHubu a nainštalovať všetko z požiadaviek.
+Otvoriť 2 terminály, prejsť do priečinkov dance-shop a server, a v oboch napísať npm start.
+
+Požiadavky:
+Node.js
+npm 
+PostgreSQL
+React.js
+Bootstrap
+Axios
+jsonwebtoken
+bcrypt
+dotenv
+Express.js
+
+
