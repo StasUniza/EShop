@@ -35,6 +35,7 @@ function AdminProductPage() {
       setProducts(data);
     } catch (error) {
       console.error('Chyba pri načítavaní produktov:', error);
+      alert(`Chyba pri načítavaní produktov: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -70,6 +71,7 @@ function AdminProductPage() {
       fetchProducts();
     } catch (error) {
       console.error('Chyba pri vytváraní produktu:', error);
+      alert(`Chyba pri vytváraní produktu: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -113,6 +115,8 @@ function AdminProductPage() {
       fetchProducts();
     } catch (error) {
       console.error('Chyba pri úprave produktu:', error);
+      alert(`Chyba pri úprave produktu: ${error.response?.data?.message || error.message}`);
+
     }
   };
 
@@ -123,6 +127,7 @@ function AdminProductPage() {
       fetchProducts();
     } catch (error) {
       console.error('Chyba pri mazaní produktu:', error);
+      alert(`Chyba pri mazaní produktu: ${error.response?.data?.message || error.message}`);
     }
   };
 
@@ -144,7 +149,7 @@ function AdminProductPage() {
 
   return (
     <div className="admin-product-page container">
-      <h1 className="text-center my-5 text-white">Správa produktov (Admin)</h1>
+      <h1 className="text-center my-5 text-white">Správa produktov Admin</h1>
 
       <div className="admin-product-form mb-4">
         <form className="form-dark" onSubmit={handleSubmit}>

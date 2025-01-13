@@ -89,23 +89,23 @@ const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      `UPDATE Product
-       SET is_active = FALSE
+      `DELETE FROM Product
        WHERE product_id = $1 
        RETURNING *`,
       [id]
     );
 
     if (result.rowCount === 0) {
-      return res.status(404).json({ message: 'Produkt nenájdený alebo už je neaktívny.' });
+      return res.status(404).json({ message: 'Produkt nenájdený.' });
     }
 
-    res.status(200).json({ message: 'Produkt bol vymazaný (deaktivovaný).', product: result.rows[0] });
+    res.status(200).json({ message: 'Produkt bol úspešne vymazaný.', product: result.rows[0] });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: 'Chyba pri mazaní produktu.' });
   }
 };
+
 
 module.exports = {
   getAllProducts,
