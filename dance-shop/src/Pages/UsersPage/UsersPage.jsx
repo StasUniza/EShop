@@ -269,9 +269,7 @@ function UsersPage() {
                                     <p className="card-text">
                                         <strong>Email:</strong> {user.email}
                                     </p>
-                                    <p className="card-text">
-                                        <strong>ID:</strong> {user.user_id}
-                                    </p>
+                                    
                                     <div className="d-flex justify-content-end">
                                         <button
                                             className="btn btn-modify me-2"
@@ -295,7 +293,7 @@ function UsersPage() {
                 <table className="table table-striped table-responsive">
                     <thead className="table-dark">
                         <tr>
-                            <th>ID</th>
+                            
                             <th>Meno</th>
                             <th>Email</th>
                             <th>Akcie</th>
@@ -304,7 +302,7 @@ function UsersPage() {
                     <tbody>
                         {users.map((user) => (
                             <tr key={user.user_id}>
-                                <td>{user.user_id}</td>
+                               
                                 <td>
                                     {user.first_name} {user.last_name}
                                 </td>

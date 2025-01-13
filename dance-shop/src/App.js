@@ -12,7 +12,7 @@ import UserManagement from './Pages/UsersPage/UsersPage';
 import AddUserForm from './Pages/UsersPage/AddUserForm'; 
 
 import AdminProductsPage from './Pages/AdminProductsPage/AdminProductsPage';
-import ProtectedRoute from './components/ProtectedRoute'; 
+import { ProtectedRoute, AdminProtectedRoute } from './components/ProtectedRoute';
 import ProfilePage from './Pages/ProfilePage';
 
 
@@ -34,10 +34,10 @@ function App() {
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/register' element={<RegisterPage/>} />
                     <Route path='/cart' element={<ProtectedRoute> <CartPage/></ProtectedRoute>}/>
-                    <Route path="/users" element={<ProtectedRoute> <UserManagement /></ProtectedRoute>} />
+                    <Route path="/users" element={<AdminProtectedRoute> <UserManagement /></AdminProtectedRoute>} />
                     <Route path="/add-user" element={<AddUserForm />} />
                     <Route path="/products" element={<ProductsPage />} />
-                    <Route path="/admin/products" element={ <ProtectedRoute> <AdminProductsPage /></ProtectedRoute>}/>
+                    <Route path="/admin/products" element={ <AdminProtectedRoute> <AdminProductsPage /></AdminProtectedRoute>}/>
                     <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
 
                 </Routes>

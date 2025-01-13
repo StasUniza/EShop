@@ -39,25 +39,45 @@ function ProductsPage() {
   }, []);
 
   
-  const filteredProducts =
-    selectedCategory === 'všetky'
-      ? products
-      : products.filter((product) => product.category_id === parseInt(selectedCategory));
+  const filteredProducts = selectedCategory === 'všetky'
+    ? products
+    : products.filter((product) => {
+        if (selectedCategory === 'topanky') return product.category_id === 4;
+        if (selectedCategory === 'oblecenie') return product.category_id === 5;
+        if (selectedCategory === 'doplnky') return product.category_id === 6;
+        return false; 
+    });
 
   return (
     <div className="products-page container">
       <h1 className="text-center my-5 text-white">Produkty</h1>
 
       <div className="filters text-center mb-4">
-        <button
-          className={`btn mx-2 mb-2 ${
-            selectedCategory === 'všetky' ? 'btn-custom-active' : 'btn-outline-light'
-          }`}
-          onClick={() => setSelectedCategory('všetky')}
-        >
-          Všetky
-        </button>
-      </div>
+    <button
+        className={`btn mx-2 mb-2 ${selectedCategory === 'všetky' ? 'btn-custom-active' : 'btn-outline-light'}`}
+        onClick={() => setSelectedCategory('všetky')}
+    >
+        Všetky
+    </button>
+    <button
+        className={`btn mx-2 mb-2 ${selectedCategory === 'topanky' ? 'btn-custom-active' : 'btn-outline-light'}`}
+        onClick={() => setSelectedCategory('topanky')}
+    >
+        Topánky
+    </button>
+    <button
+        className={`btn mx-2 mb-2 ${selectedCategory === 'oblecenie' ? 'btn-custom-active' : 'btn-outline-light'}`}
+        onClick={() => setSelectedCategory('oblecenie')}
+    >
+        Oblečenie
+    </button>
+    <button
+        className={`btn mx-2 mb-2 ${selectedCategory === 'doplnky' ? 'btn-custom-active' : 'btn-outline-light'}`}
+        onClick={() => setSelectedCategory('doplnky')}
+    >
+        Doplnky
+    </button>
+</div>
 
       <div className="row justify-content-center">
         {filteredProducts.map((product) => {
