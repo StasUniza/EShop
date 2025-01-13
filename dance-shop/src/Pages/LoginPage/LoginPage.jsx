@@ -20,12 +20,15 @@ function LoginPage() {
         try {
             await loginUser(credentials);
             alert('Prihlásenie úspešné.');
-            navigate('/products'); 
+            navigate('/products');
+            window.location.reload(); 
         } catch (error) {
             setErrorMessage(
                 error.response?.data?.message || 'Došlo k chybe pri prihlasovaní.'
             );
         }
+
+        
     };
 
     return (

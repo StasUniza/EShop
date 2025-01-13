@@ -33,8 +33,8 @@ function App() {
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/register' element={<RegisterPage/>} />
-                    <Route path='/cart' element={<CartPage/>}/>
-                    <Route path="/users" element={<UserManagement />} />
+                    <Route path='/cart' element={<ProtectedRoute> <CartPage/></ProtectedRoute>}/>
+                    <Route path="/users" element={<ProtectedRoute> <UserManagement /></ProtectedRoute>} />
                     <Route path="/add-user" element={<AddUserForm />} />
                     <Route path="/products" element={<ProductsPage />} />
                     <Route path="/admin/products" element={ <ProtectedRoute> <AdminProductsPage /></ProtectedRoute>}/>

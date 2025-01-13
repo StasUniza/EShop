@@ -1,7 +1,7 @@
 //src\services\authService.js
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {jwtDecode} from 'jwt-decode'; // Musíme nainštalovať: npm install jwt-decode
+import {jwtDecode} from 'jwt-decode'; 
 
 
 const API_URL = '/api/auth';
@@ -12,7 +12,7 @@ export const getUserInfo = () => {
     const token = getToken();
     if (!token) return null;
     try {
-        return jwtDecode(token); // Vracia objekt s `userId` a `roleId`
+        return jwtDecode(token); 
     } catch (error) {
         console.error('Chyba pri dekódovaní tokenu:', error);
         return null;
@@ -28,7 +28,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (credentials) => {
     const response = await axios.post(`${API_URL}/login`, credentials);
 
-    Cookies.set('token', response.data.token, { expires: 1 }); // Token sa ukladá na 1 deň
+    Cookies.set('token', response.data.token, { expires: 1 }); 
     return response.data;
 };
 
@@ -54,3 +54,5 @@ export const verifyToken = async () => {
 
     return response.data;
 };
+
+

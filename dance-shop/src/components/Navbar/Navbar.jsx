@@ -53,11 +53,7 @@ function Navbar() {
                                 Produkty
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/contact">
-                                Kontakt
-                            </Link>
-                        </li>
+                        
 
                         {userInfo?.roleId === 1 && (
                             <li className="nav-item dropdown">
@@ -115,6 +111,7 @@ function Navbar() {
 
 
                         {userInfo && (
+                            <>
                             <li className="nav-item dropdown">
                                 <a
                                     className="nav-link dropdown-toggle"
@@ -142,16 +139,27 @@ function Navbar() {
                                     </li>
                                 </ul>
                             </li>
+                            
+                            
+                        </>
                         )}
 
                         
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/contact">
+                                Kontakt
+                            </Link>
+                        </li>
 
+                        {userInfo && (
                         <li className="nav-item">
                             <Link className="nav-link position-relative" to="/cart">
                                 <i className="bi bi-cart" style={{ fontSize: '1.5rem' }}></i>
                                 
                             </Link>
                         </li>
+                        )}
+                        
                     </ul>
                 </div>
             </div>

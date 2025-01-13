@@ -4,19 +4,27 @@ import { Link } from 'react-router-dom';
 import './ProductsPage.css';
 import { getAllProducts } from '../../services/productService';
 import { addToCart } from '../../services/cartService';
+import { getUserInfo } from '../../services/authService';
+
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('všetky');
 
   const handleAddToCart = async (productId) => {
-    try {
-      await addToCart(productId, 1); 
-      alert('Produkt pridaný do košíka');
-    } catch (error) {
-      console.error('Chyba pri pridávaní do košíka:', error);
+    const userInfo = getUserInfo(); 
+    if (!userInfo) {
+        alert('Nie ste prihlásený. Prihláste sa, aby ste mohli pridávať produkty do košíka.');
+        return;
     }
-  };
+
+    try {
+        await addToCart(productId, 1);
+        alert('Produkt pridaný do košíka');
+    } catch (error) {
+        console.error('Chyba pri pridávaní do košíka:', error);
+    }
+};
 
   useEffect(() => {
     const fetchProducts = async () => {
